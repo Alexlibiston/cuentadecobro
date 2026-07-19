@@ -21,6 +21,9 @@
                 box-shadow: none !important;
                 appearance: none !important;
             }
+            /* Oculta los textos de ayuda entre paréntesis en el PDF */
+            .ayuda-texto { display: none !important; }
+            
             /* El concepto se expande al ancho completo de la página manteniendo márgenes legales */
             .concepto-textarea { 
                 width: 100% !important; 
@@ -52,9 +55,11 @@
             </div>
         </div>
 
-        <!-- 1. DATOS DEL DEUDOR (CLIENTE) -->
+        <!-- 1. DATOS DEL DEUDOR -->
         <div class="box-partes bg-slate-50 p-4 rounded-lg border border-slate-100 mb-6">
-            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">DEUDOR (DATOS DEL CLIENTE):</h2>
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
+                DEUDOR <span class="ayuda-texto">(DATOS DEL CLIENTE)</span>:
+            </h2>
             <div class="space-y-2">
                 <input type="text" placeholder="Nombre de la Empresa o Persona" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
                 <input type="text" placeholder="NIT / Cédula del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
@@ -62,9 +67,11 @@
             </div>
         </div>
 
-        <!-- 2. DATOS DE QUIEN COBRA (MI INFORMACIÓN) -->
+        <!-- 2. DATOS DE QUIEN COBRA -->
         <div class="box-partes bg-slate-50 p-4 rounded-lg border border-slate-100 mb-8">
-            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">DEBE A (MI INFORMACIÓN):</h2>
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
+                DEBE A <span class="ayuda-texto">(MI INFORMACIÓN)</span>:
+            </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="space-y-2">
                     <input type="text" placeholder="Tu Nombre Completo" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
@@ -100,7 +107,7 @@
             <textarea placeholder="Redacta el servicio de forma ejecutiva. Ejemplo: Prestación de servicios profesionales correspondientes al desarrollo del software de inventarios..." rows="5" class="concepto-textarea w-full border border-gray-200 rounded-lg p-4 text-gray-700 font-serif leading-relaxed focus:outline-none focus:ring-1 focus:ring-gray-400 text-base"></textarea>
         </div>
 
-        <!-- CERTIFICACIÓN LEGAL COLOMBIANA (INCLUIDA POR NORMA) -->
+        <!-- CERTIFICACIÓN LEGAL COLOMBIANA -->
         <div class="mt-6 text-justify mb-12">
             <p class="text-[11px] text-gray-400 leading-normal italic">
                 Manifiesto bajo la gravedad del juramento que me encuentro en el régimen no responsable de IVA y que cumplo con los requisitos establecidos en el artículo 437 del Estatuto Tributario.
