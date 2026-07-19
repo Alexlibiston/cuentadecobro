@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Cuentas de Cobro</title>
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        @media print {
+            body { background: white; color: black; padding: 0; }
+            .no-print { display: none !important; }
+            .print-card { border: none; box-shadow: none; padding: 0; max-width: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen py-4 md:py-10 px-2 md:px-4 text-base">
+
+    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-5 md:p-8 print-card">
+        
+        <!-- ENCABEZADO -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-200 pb-4 mb-6 gap-4">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-800 tracking-tight">CUENTA DE COBRO</h1>
+                <p class="text-sm text-gray-500 mt-1">Consecutivo: <input type="text" value="001" class="border-b border-gray-300 focus:outline-none w-16 text-center font-bold text-gray-700 p-1"></p>
+            </div>
+            <div class="w-full sm:w-auto">
+                <input type="date" id="fecha" class="w-full sm:w-auto border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[44px]">
+            </div>
+        </div>
+
+        <!-- INFORMACIÓN DE LAS PARTES -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <!-- Deudor -->
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">A CARGO DE (CLIENTE)</h2>
+                <input type="text" placeholder="Nombre de la empresa o persona" class="w-full bg-transparent border-b border-gray-300 py-2 text-gray-800 focus:outline-none focus:border-blue-500 font-medium mb-3 min-h-[44px]">
+                <input type="text" placeholder="NIT / Cédula" class="w-full bg-transparent border-b border-gray-300 py-2 text-sm text-gray-600 focus:outline-none focus:border-blue-500 min-h-[44px]">
+            </div>
+            <!-- Emisor -->
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100">
+                <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">DEBE A (TU INFORMACIÓN)</h2>
+                <input type="text" placeholder="Tu Nombre Completo" class="w-full bg-transparent border-b border-gray-300 py-2 text-gray-800 focus:outline-none focus:border-blue-500 font-medium mb-3 min-h-[44px]">
+                <input type="text" placeholder="Tu Cédula o NIT" class="w-full bg-transparent border-b border-gray-300 py-2 text-sm text-gray-600 focus:outline-none focus:border-blue-500 mb-3 min-h-[44px]">
+                <input type="tel" placeholder="Teléfono de contacto" class="w-full bg-transparent border-b border-gray-300 py-2 text-sm text-gray-600 focus:outline-none focus:border-blue-500 min-h-[44px]">
+            </div>
+        </div>
+
+        <!-- DETALLE DEL COBRO -->
+        <div class="mb-6">
+            <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">POR CONCEPTO DE</h2>
+            <textarea placeholder="Describe aquí los servicios prestados o productos entregados..." rows="4" class="w-full border border-gray-300 rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none text-base"></textarea>
+        </div>
+
+        <!-- VALOR Y PAGO -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end border-t border-gray-200 pt-6">
+            <div class="space-y-1">
+                <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">INFORMACIÓN DE PAGO</h2>
+                <input type="text" placeholder="Banco (ej. Bancolombia)" class="w-full border-b border-gray-200 py-2 text-sm text-gray-700 focus:outline-none focus:border-blue-500 min-h-[44px]">
+                <input type="text" placeholder="Tipo de cuenta (ej. Ahorros)" class="w-full border-b border-gray-200 py-2 text-sm text-gray-700 focus:outline-none focus:border-blue-500 min-h-[44px]">
+                <input type="text" placeholder="Número de cuenta" class="w-full border-b border-gray-200 py-2 text-sm text-gray-700 focus:outline-none focus:border-blue-500 min-h-[44px]">
+            </div>
+            
+            <div class="bg-blue-50 p-4 rounded-lg flex justify-between items-center border border-blue-100">
+                <span class="text-base font-bold text-blue-900">VALOR TOTAL:</span>
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-blue-900 mr-1">$</span>
+                    <input type="number" id="valor" value="0" min="0" class="w-36 bg-transparent text-xl font-bold text-blue-900 text-right focus:outline-none p-1">
+                </div>
+            </div>
+        </div>
+
+        <!-- FIRMA -->
+        <div class="mt-12 pt-8 border-t border-gray-100 flex flex-col items-center">
+            <div class="w-48 border-b border-gray-400 mb-2"></div>
+            <p class="text-sm font-medium text-gray-700">Firma del Prestador</p>
+        </div>
+
+        <!-- BOTÓN DE IMPRESIÓN -->
+        <div class="mt-8 flex justify-end no-print">
+            <button onclick="window.print()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg transition-colors cursor-pointer shadow-sm text-center min-h-[48px]">
+                Generar PDF / Imprimir
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // Fecha actual automática
+        document.getElementById('fecha').valueAsDate = new Date();
+    </script>
+</body>
+</html>
