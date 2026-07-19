@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuenta de Cobro Ejecutiva</title>
+    <title>Cuenta de Cobro Estructural</title>
     <script src="https://jsdelivr.net"></script>
     <style>
         /* ESTILOS EXCLUSIVOS PARA LA IMPRESIÓN / PDF */
@@ -13,19 +13,25 @@
             .print-card { border: none !important; box-shadow: none !important; padding: 0 !important; max-width: 100% !important; }
             
             /* Remueve fondos, bordes e indicadores de casillas */
-            input, textarea, select {
+            input, textarea {
                 border: none !important;
                 background: transparent !important;
                 padding: 0 !important;
                 outline: none !important;
                 box-shadow: none !important;
                 appearance: none !important;
-                width: auto !important;
             }
-            /* Ajustes para textos largos impresos */
-            textarea { resize: none !important; height: auto !important; }
+            /* El concepto se expande al ancho completo de la página manteniendo márgenes legales */
+            .concepto-textarea { 
+                width: 100% !important; 
+                height: auto !important; 
+                resize: none !important;
+                display: block !important;
+                text-align: justify !important;
+                line-height: 1.6 !important;
+            }
             .box-partes { background: transparent !important; border: none !important; padding: 0 !important; }
-            .total-box { background: transparent !important; border-top: 2px solid black !important; border-bottom: 2px solid black !important; padding: 6px 0 !important; border-radius: 0 !important; }
+            .total-box { background: transparent !important; border-top: 1.5px solid black !important; border-bottom: 1.5px solid black !important; padding: 6px 0 !important; border-radius: 0 !important; width: 100% !important; }
             .total-box span, .total-box input { color: black !important; font-size: 1.25rem !important; }
         }
     </style>
@@ -46,67 +52,62 @@
             </div>
         </div>
 
-        <!-- SECCIÓN DE IDENTIFICACIÓN DE LAS PARTES -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <!-- Emisor (Tu información) -->
-            <div class="box-partes bg-slate-50 p-4 rounded-lg border border-slate-100">
-                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">DEBE A (MI INFORMACIÓN):</h2>
+        <!-- 1. DATOS DEL DEUDOR (CLIENTE) -->
+        <div class="box-partes bg-slate-50 p-4 rounded-lg border border-slate-100 mb-6">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">DEUDOR (DATOS DEL CLIENTE):</h2>
+            <div class="space-y-2">
+                <input type="text" placeholder="Nombre de la Empresa o Persona" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
+                <input type="text" placeholder="NIT / Cédula del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
+                <input type="text" placeholder="Dirección / Ciudad del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
+            </div>
+        </div>
+
+        <!-- 2. DATOS DE QUIEN COBRA (MI INFORMACIÓN) -->
+        <div class="box-partes bg-slate-50 p-4 rounded-lg border border-slate-100 mb-8">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">DEBE A (MI INFORMACIÓN):</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="space-y-2">
                     <input type="text" placeholder="Tu Nombre Completo" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
                     <input type="text" placeholder="Tu Cédula o NIT (ej. C.C. 1.234.567)" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
                     <input type="tel" placeholder="Tu Teléfono / Celular" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
                 </div>
-            </div>
-
-            <!-- Deudor (Información del Cliente) -->
-            <div class="box-partes bg-slate-50 p-4 rounded-lg border border-slate-100">
-                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">DEUDOR (DATOS DEL CLIENTE):</h2>
                 <div class="space-y-2">
-                    <input type="text" placeholder="Nombre de la Empresa o Persona" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
-                    <input type="text" placeholder="NIT / Cédula del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
-                    <input type="text" placeholder="Dirección / Ciudad del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Información de Pago:</p>
+                    <input type="text" placeholder="Banco (ej. Bancolombia)" class="w-full border-b border-gray-100 py-1 text-sm text-gray-700 focus:outline-none focus:border-gray-500">
+                    <input type="text" placeholder="Tipo de Cuenta y Número" class="w-full border-b border-gray-100 py-1 text-sm text-gray-700 focus:outline-none focus:border-gray-500">
                 </div>
             </div>
         </div>
 
-        <!-- CUERPO / CONCEPTO -->
-        <div class="mb-6">
-            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">POR CONCEPTO DE:</h2>
-            <textarea placeholder="Redacta el servicio de forma ejecutiva. Ejemplo: Prestación de servicios profesionales correspondientes al desarrollo del software de inventarios durante el período..." rows="5" class="w-full border border-gray-200 rounded-lg p-4 text-gray-700 font-serif leading-relaxed focus:outline-none focus:ring-1 focus:ring-gray-400 text-base"></textarea>
-        </div>
-
-        <!-- VALOR EN LETRAS -->
-        <div class="mb-8">
-            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">VALOR EN LETRAS:</h2>
-            <input type="text" placeholder="Ej: Un millón doscientos mil pesos M/CTE" class="w-full border-b border-gray-200 py-1 text-sm text-gray-700 font-serif focus:outline-none focus:border-gray-800 italic">
-        </div>
-
-        <!-- TOTAL Y DETALLES DE PAGO -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end border-t border-gray-200 pt-6">
-            <div class="space-y-2">
-                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">FORMA DE PAGO:</h2>
-                <input type="text" placeholder="Entidad Bancaria (ej. Bancolombia)" class="w-full border-b border-gray-100 py-1 text-sm text-gray-700 focus:outline-none focus:border-gray-500">
-                <input type="text" placeholder="Tipo de Cuenta (ej. Ahorros)" class="w-full border-b border-gray-100 py-1 text-sm text-gray-700 focus:outline-none focus:border-gray-500">
-                <input type="text" placeholder="Número de Cuenta" class="w-full border-b border-gray-100 py-1 text-sm text-gray-700 focus:outline-none focus:border-gray-500">
-            </div>
-            
-            <div class="total-box bg-gray-900 text-white p-4 rounded-lg flex justify-between items-center transition-all">
+        <!-- 3. VALOR EN NÚMEROS Y EN LETRAS -->
+        <div class="border-t border-b border-gray-200 py-4 mb-8 space-y-4">
+            <div class="total-box bg-gray-900 text-white p-4 rounded-lg flex justify-between items-center transition-all max-w-md">
                 <span class="text-sm font-bold tracking-wider uppercase">VALOR TOTAL:</span>
                 <div class="flex items-center">
                     <span class="text-xl font-serif font-bold mr-1">$</span>
                     <input type="number" id="valor" value="0" min="0" class="w-40 bg-transparent text-xl font-serif font-bold text-right focus:outline-none">
                 </div>
             </div>
+            <div>
+                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">VALOR EN LETRAS:</h2>
+                <input type="text" placeholder="Ej: Un millón doscientos mil pesos M/CTE" class="w-full border-b border-gray-200 py-1 text-base text-gray-800 font-serif focus:outline-none focus:border-gray-800 italic">
+            </div>
         </div>
 
-        <!-- CERTIFICACIÓN LEGAL COLOMBIANA -->
-        <div class="mt-8 text-justify">
+        <!-- 4. CONCEPTO -->
+        <div class="mb-8">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">POR CONCEPTO DE:</h2>
+            <textarea placeholder="Redacta el servicio de forma ejecutiva. Ejemplo: Prestación de servicios profesionales correspondientes al desarrollo del software de inventarios..." rows="5" class="concepto-textarea w-full border border-gray-200 rounded-lg p-4 text-gray-700 font-serif leading-relaxed focus:outline-none focus:ring-1 focus:ring-gray-400 text-base"></textarea>
+        </div>
+
+        <!-- CERTIFICACIÓN LEGAL COLOMBIANA (INCLUIDA POR NORMA) -->
+        <div class="mt-6 text-justify mb-12">
             <p class="text-[11px] text-gray-400 leading-normal italic">
                 Manifiesto bajo la gravedad del juramento que me encuentro en el régimen no responsable de IVA y que cumplo con los requisitos establecidos en el artículo 437 del Estatuto Tributario.
             </p>
         </div>
 
-        <!-- FIRMA EJECUTIVA -->
+        <!-- 5. FIRMA DE QUIEN COBRA -->
         <div class="mt-16 pt-8 flex flex-col items-start pl-4">
             <div class="w-56 border-b border-gray-900 mb-2"></div>
             <p class="text-sm font-semibold text-gray-900">Firma del Prestador</p>
