@@ -46,32 +46,39 @@
             </div>
         </div>
 
-        <!-- SECCIÓN DE IDENTIFICACIÓN -->
+        <!-- SECCIÓN DE IDENTIFICACIÓN DE LAS PARTES -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <!-- Emisor (Quien cobra) -->
+            <!-- Emisor (Tu información) -->
             <div class="box-partes bg-slate-50 p-4 rounded-lg border border-slate-100">
-                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">DEBE A:</h2>
+                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">DEBE A (MI INFORMACIÓN):</h2>
                 <div class="space-y-2">
-                    <input type="text" placeholder="Nombre completo del Prestador" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
-                    <input type="text" placeholder="Cédula / NIT (ej. C.C. 1.234.567)" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
-                    <input type="tel" placeholder="Teléfono / Celular" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
+                    <input type="text" placeholder="Tu Nombre Completo" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
+                    <input type="text" placeholder="Tu Cédula o NIT (ej. C.C. 1.234.567)" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
+                    <input type="tel" placeholder="Tu Teléfono / Celular" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
                 </div>
             </div>
 
-            <!-- Deudor (Cliente) -->
+            <!-- Deudor (Información del Cliente) -->
             <div class="box-partes bg-slate-50 p-4 rounded-lg border border-slate-100">
-                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">A CARGO DE:</h2>
+                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">DEUDOR (DATOS DEL CLIENTE):</h2>
                 <div class="space-y-2">
-                    <input type="text" placeholder="Nombre de la Empresa o Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
-                    <input type="text" placeholder="NIT / Cédula del cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
+                    <input type="text" placeholder="Nombre de la Empresa o Persona" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
+                    <input type="text" placeholder="NIT / Cédula del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
+                    <input type="text" placeholder="Dirección / Ciudad del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
                 </div>
             </div>
         </div>
 
         <!-- CUERPO / CONCEPTO -->
-        <div class="mb-8">
+        <div class="mb-6">
             <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">POR CONCEPTO DE:</h2>
             <textarea placeholder="Redacta el servicio de forma ejecutiva. Ejemplo: Prestación de servicios profesionales correspondientes al desarrollo del software de inventarios durante el período..." rows="5" class="w-full border border-gray-200 rounded-lg p-4 text-gray-700 font-serif leading-relaxed focus:outline-none focus:ring-1 focus:ring-gray-400 text-base"></textarea>
+        </div>
+
+        <!-- VALOR EN LETRAS -->
+        <div class="mb-8">
+            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">VALOR EN LETRAS:</h2>
+            <input type="text" placeholder="Ej: Un millón doscientos mil pesos M/CTE" class="w-full border-b border-gray-200 py-1 text-sm text-gray-700 font-serif focus:outline-none focus:border-gray-800 italic">
         </div>
 
         <!-- TOTAL Y DETALLES DE PAGO -->
@@ -92,7 +99,7 @@
             </div>
         </div>
 
-        <!-- CERTIFICACIÓN LEGAL COLOMBIANA (OPCIONAL PERO MUY FORMAL) -->
+        <!-- CERTIFICACIÓN LEGAL COLOMBIANA -->
         <div class="mt-8 text-justify">
             <p class="text-[11px] text-gray-400 leading-normal italic">
                 Manifiesto bajo la gravedad del juramento que me encuentro en el régimen no responsable de IVA y que cumplo con los requisitos establecidos en el artículo 437 del Estatuto Tributario.
@@ -106,7 +113,7 @@
             <p class="text-xs text-gray-500">Acreedor Autorizado</p>
         </div>
 
-        <!-- BOTÓN DE ACCIÓN (NUNCA APARECERÁ EN EL PDF) -->
+        <!-- BOTÓN DE ACCIÓN -->
         <div class="mt-12 flex justify-end no-print">
             <button onclick="window.print()" class="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-white font-medium tracking-wide uppercase text-xs px-6 py-3 rounded shadow transition-all cursor-pointer text-center">
                 Generar Documento Ejecutivo
