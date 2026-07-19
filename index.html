@@ -21,8 +21,8 @@
                 box-shadow: none !important;
                 appearance: none !important;
             }
-            /* Oculta los textos de ayuda entre paréntesis en el PDF */
-            .ayuda-texto { display: none !important; }
+            /* Forzar desaparición de ayudas visuales por CSS */
+            .ayuda-texto { display: none !important; visibility: hidden !important; opacity: 0 !important; }
             
             /* El concepto se expande al ancho completo de la página manteniendo márgenes legales */
             .concepto-textarea { 
@@ -123,7 +123,7 @@
 
         <!-- BOTÓN DE ACCIÓN -->
         <div class="mt-12 flex justify-end no-print">
-            <button onclick="window.print()" class="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-white font-medium tracking-wide uppercase text-xs px-6 py-3 rounded shadow transition-all cursor-pointer text-center">
+            <button onclick="ejecutarImpresion()" class="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-white font-medium tracking-wide uppercase text-xs px-6 py-3 rounded shadow transition-all cursor-pointer text-center">
                 Generar Documento Ejecutivo
             </button>
         </div>
@@ -131,8 +131,23 @@
     </div>
 
     <script>
-        // Inicializa la fecha de hoy de forma automática
+        // Inicializa la fecha de hoy automáticamente
         document.getElementById('fecha').valueAsDate = new Date();
+
+        // Función que limpia el documento antes de imprimir para garantizar un diseño formal
+        function ejecutarImpresion() {
+            // Guardamos las etiquetas de ayuda en una variable
+            const ayudas = document.querySelectorAll('.ayuda-texto');
+            
+            // Las removemos por completo del documento antes de la impresión
+            ayudas.forEach(el => el.style.setProperty('display', 'none', 'important'));
+            
+            // Ejecutamos la impresión nativa del sistema operativo/navegador
+            window.print();
+            
+            // Las devolvemos a la pantalla una vez el menú de impresión se cierra
+            ayudas.forEach(el => el.style.display = 'inline');
+        }
     </script>
 </body>
 </html>
