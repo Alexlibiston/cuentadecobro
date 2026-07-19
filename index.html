@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuenta de Cobro Estructural</title>
+    <title>Cuenta de Cobro Formal</title>
     <script src="https://jsdelivr.net"></script>
     <style>
         /* ESTILOS EXCLUSIVOS PARA LA IMPRESIÓN / PDF */
@@ -11,6 +11,9 @@
             body { background: white !important; color: black !important; padding: 0 !important; font-family: 'Times New Roman', Times, serif !important; }
             .no-print { display: none !important; }
             .print-card { border: none !important; box-shadow: none !important; padding: 0 !important; max-width: 100% !important; }
+            
+            /* Oculta marcas de agua y guías de texto vacías */
+            ::placeholder { color: transparent !important; opacity: 0 !important; }
             
             /* Remueve fondos, bordes e indicadores de casillas */
             input, textarea {
@@ -21,8 +24,6 @@
                 box-shadow: none !important;
                 appearance: none !important;
             }
-            /* Forzar desaparición de ayudas visuales por CSS */
-            .ayuda-texto { display: none !important; visibility: hidden !important; opacity: 0 !important; }
             
             /* El concepto se expande al ancho completo de la página manteniendo márgenes legales */
             .concepto-textarea { 
@@ -57,29 +58,25 @@
 
         <!-- 1. DATOS DEL DEUDOR -->
         <div class="box-partes bg-slate-50 p-4 rounded-lg border border-slate-100 mb-6">
-            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
-                DEUDOR <span class="ayuda-texto">(DATOS DEL CLIENTE)</span>:
-            </h2>
+            <h2 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">DEUDOR:</h2>
             <div class="space-y-2">
-                <input type="text" placeholder="Nombre de la Empresa o Persona" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
-                <input type="text" placeholder="NIT / Cédula del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
-                <input type="text" placeholder="Dirección / Ciudad del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
+                <input type="text" placeholder="Nombre de la Empresa o Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
+                <input type="text" placeholder="NIT o Cédula del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
+                <input type="text" placeholder="Dirección y Ciudad del Cliente" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
             </div>
         </div>
 
         <!-- 2. DATOS DE QUIEN COBRA -->
         <div class="box-partes bg-slate-50 p-4 rounded-lg border border-slate-100 mb-8">
-            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
-                DEBE A <span class="ayuda-texto">(MI INFORMACIÓN)</span>:
-            </h2>
+            <h2 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">DEBE A:</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="space-y-2">
                     <input type="text" placeholder="Tu Nombre Completo" class="w-full bg-transparent border-b border-gray-200 py-1 font-serif text-lg text-gray-900 focus:outline-none focus:border-gray-800 font-medium">
                     <input type="text" placeholder="Tu Cédula o NIT (ej. C.C. 1.234.567)" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
-                    <input type="tel" placeholder="Tu Teléfono / Celular" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
+                    <input type="tel" placeholder="Tu Teléfono de Contacto" class="w-full bg-transparent border-b border-gray-200 py-1 text-sm text-gray-600 focus:outline-none focus:border-gray-800">
                 </div>
                 <div class="space-y-2">
-                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Información de Pago:</p>
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Forma de Pago:</p>
                     <input type="text" placeholder="Banco (ej. Bancolombia)" class="w-full border-b border-gray-100 py-1 text-sm text-gray-700 focus:outline-none focus:border-gray-500">
                     <input type="text" placeholder="Tipo de Cuenta y Número" class="w-full border-b border-gray-100 py-1 text-sm text-gray-700 focus:outline-none focus:border-gray-500">
                 </div>
@@ -96,15 +93,15 @@
                 </div>
             </div>
             <div>
-                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">VALOR EN LETRAS:</h2>
-                <input type="text" placeholder="Ej: Un millón doscientos mil pesos M/CTE" class="w-full border-b border-gray-200 py-1 text-base text-gray-800 font-serif focus:outline-none focus:border-gray-800 italic">
+                <h2 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">VALOR EN LETRAS:</h2>
+                <input type="text" placeholder="Escribe el valor en letras (ej: Un millón de pesos M/CTE)" class="w-full border-b border-gray-200 py-1 text-base text-gray-800 font-serif focus:outline-none focus:border-gray-800 italic">
             </div>
         </div>
 
         <!-- 4. CONCEPTO -->
         <div class="mb-8">
-            <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">POR CONCEPTO DE:</h2>
-            <textarea placeholder="Redacta el servicio de forma ejecutiva. Ejemplo: Prestación de servicios profesionales correspondientes al desarrollo del software de inventarios..." rows="5" class="concepto-textarea w-full border border-gray-200 rounded-lg p-4 text-gray-700 font-serif leading-relaxed focus:outline-none focus:ring-1 focus:ring-gray-400 text-base"></textarea>
+            <h2 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">POR CONCEPTO DE:</h2>
+            <textarea placeholder="Describe aquí los servicios prestados o productos entregados de forma detallada..." rows="5" class="concepto-textarea w-full border border-gray-200 rounded-lg p-4 text-gray-700 font-serif leading-relaxed focus:outline-none focus:ring-1 focus:ring-gray-400 text-base"></textarea>
         </div>
 
         <!-- CERTIFICACIÓN LEGAL COLOMBIANA -->
@@ -123,7 +120,7 @@
 
         <!-- BOTÓN DE ACCIÓN -->
         <div class="mt-12 flex justify-end no-print">
-            <button onclick="ejecutarImpresion()" class="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-white font-medium tracking-wide uppercase text-xs px-6 py-3 rounded shadow transition-all cursor-pointer text-center">
+            <button onclick="window.print()" class="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-white font-medium tracking-wide uppercase text-xs px-6 py-3 rounded shadow transition-all cursor-pointer text-center">
                 Generar Documento Ejecutivo
             </button>
         </div>
@@ -133,21 +130,6 @@
     <script>
         // Inicializa la fecha de hoy automáticamente
         document.getElementById('fecha').valueAsDate = new Date();
-
-        // Función que limpia el documento antes de imprimir para garantizar un diseño formal
-        function ejecutarImpresion() {
-            // Guardamos las etiquetas de ayuda en una variable
-            const ayudas = document.querySelectorAll('.ayuda-texto');
-            
-            // Las removemos por completo del documento antes de la impresión
-            ayudas.forEach(el => el.style.setProperty('display', 'none', 'important'));
-            
-            // Ejecutamos la impresión nativa del sistema operativo/navegador
-            window.print();
-            
-            // Las devolvemos a la pantalla una vez el menú de impresión se cierra
-            ayudas.forEach(el => el.style.display = 'inline');
-        }
     </script>
 </body>
 </html>
